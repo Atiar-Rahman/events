@@ -9,8 +9,10 @@
 </head>
 <body>
     <nav class="bg-white shadow">
-    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-3 py-3 items-center">
-        <a href="{% url 'home' %}" class="text-xl font-bold text-blue-600">EventOrganizer</a>
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between gap-3 py-3 items-center">
+        <div>
+            <a href="{% url 'home' %}" class="text-xl font-bold text-blue-600">EventOrganizer</a>
+        </div>
         <div class="space-x-5">
             <a href="{% url 'home' %}" class="hover:text-blue-600">Home</a>
             <a href="{% url "event_list" %}" class="hover:text-blue-600">Events</a>
@@ -18,7 +20,7 @@
             <a href="{% url "dashboard" %}" class="hover:text-blue-600">Organizer-Dashboard</a>
             <a href="{% url "participant-dashboard" %}" class="hover:text-blue-600">Participant-Dashboard</a>
         </div>
-        <div>
+        <div class='w-50 mx-auto'>
             {% if user.is_authenticated %}
                 <form action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
