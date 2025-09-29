@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "css/output.css" %}">
+</head>
+<body>
+    <section class="bg-gray-100 py-16">
+        <div class="container mx-auto px-6">
+            <!-- Section Title -->
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">Organize Your Event</h2>
+                <p class="text-gray-600 text-lg">Plan, manage, and share your events easily with our platform.</p>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white shadow rounded-lg text-center hover:scale-105 transition-transform duration-300">
+                    <img src="{% static 'images/scheduling.jpeg' %}" alt="Calendar" class="mx-auto mb-4 w-full">
+                    <h3 class="text-xl font-semibold mb-2">Schedule Events</h3>
+                    <p class="text-gray-600">Set your event date and time, and notify participants automatically.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white shadow rounded-lg text-center hover:scale-105 transition-transform duration-300">
+                    <img src="{% static 'images/perticipant.png' %}" alt="Participants" class="mx-auto mb-4 w-full">
+                    <h3 class="text-xl font-semibold mb-2">Manage Participants</h3>
+                    <p class="text-gray-600">Keep track of RSVPs, attendees, and send reminders with ease.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white shadow rounded-lg text-center hover:scale-105 transition-transform duration-300">
+                    <img src="{% static 'images/share.jpeg' %}" alt="Share" class="mx-auto mb-4 w-full">
+                    <h3 class="text-xl font-semibold mb-2">Share & Promote</h3>
+                    <p class="text-gray-600">Share your event with a wider audience and boost engagement.</p>
+                </div>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="text-center mt-12">
+                <a href="{% url 'event_create' %}" class="bg-green-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-500 transition-colors duration-300">
+                    Create Your Event
+                </a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

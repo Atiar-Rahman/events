@@ -668,6 +668,14 @@ video {
   margin-top: 2rem;
 }
 
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
+.mt-12 {
+  margin-top: 3rem;
+}
+
 .block {
   display: block;
 }
@@ -686,6 +694,18 @@ video {
 
 .grid {
   display: grid;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
+.h-24 {
+  height: 6rem;
+}
+
+.h-40 {
+  height: 10rem;
 }
 
 .min-h-screen {
@@ -746,6 +766,22 @@ video {
 
 .w-52 {
   width: 13rem;
+}
+
+.w-16 {
+  width: 4rem;
+}
+
+.w-2 {
+  width: 0.5rem;
+}
+
+.w-24 {
+  width: 6rem;
+}
+
+.w-4 {
+  width: 1rem;
 }
 
 .min-w-full {
@@ -838,6 +874,10 @@ video {
 
 .gap-6 {
   gap: 1.5rem;
+}
+
+.gap-8 {
+  gap: 2rem;
 }
 
 .space-x-10 > :not([hidden]) ~ :not([hidden]) {
@@ -1134,6 +1174,16 @@ video {
   padding-bottom: 2rem;
 }
 
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
 .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -1182,6 +1232,11 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .font-bold {
@@ -1353,8 +1408,24 @@ video {
   transition-duration: 150ms;
 }
 
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .duration-200 {
   transition-duration: 200ms;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+.hover\:scale-105:hover {
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .hover\:bg-blue-50:hover {
@@ -1417,6 +1488,11 @@ video {
   background-color: rgb(185 28 28 / var(--tw-bg-opacity, 1));
 }
 
+.hover\:bg-green-500:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity, 1));
+}
+
 .hover\:text-black:hover {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
@@ -1449,6 +1525,10 @@ video {
 
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .md\:flex-row {

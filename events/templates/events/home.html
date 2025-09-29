@@ -34,7 +34,11 @@
     <div class='flex justify-center my-10'>
         <a href="{% url "event_list" %}" class='bg-red-200 p-4 rounded-lg '>Show ALL</a>
     </div>
-    
+    {% include "events/Event_organization.html" %}
+    {% include "events/footer.html" %}
 </div>
 {% endblock content %}
-{% include "events/footer.html" %}
+
+
+
+
