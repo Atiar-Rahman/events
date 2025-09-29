@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-dkt9d7visb(cwd*l7xl%(ur4uu&j$y46#(0d4=w*%epbipc!v2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS=['https://*.onrender.com','http://127.0.0.1:8000']
@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'event_management_system.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres:postgres@localhost:5432/mysite',
+        default='postgresql://events_db_71p0_user:jypK72aIqXZ8EzHcmtR5eGfpdf4JIAJP@dpg-d3ddlp1gv73c739gb5d0-a.oregon-postgres.render.com/events_db_71p0',
         conn_max_age=600
     )
 }
