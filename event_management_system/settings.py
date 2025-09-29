@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-dkt9d7visb(cwd*l7xl%(ur4uu&j$y46#(0d4=w*%epbipc!v2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS=['https://*.onrender.com','http://127.0.0.1:8000']
@@ -136,4 +136,4 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 
 
 
-FRONTEND_URL = config("FRONTEND_URL", default="http://127.0.0.1:8000")
+FRONTEND_URL = config("FRONTEND_URL", default="https://events-management-system-uoyt.onrender.com")
