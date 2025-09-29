@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My RSVP'd Events</title>
+    <link href="{% static 'css/output.css' %}" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    {% include "participant_nav.html" %}
+
+    <div class="max-w-4xl mx-auto mt-10 px-6">
+        <h1 class="text-3xl font-bold mb-6 text-center">Your Participant Events</h1>
+
+        {% if events %}
+            <ul class="space-y-6">
+                {% for event in events %}
+                <li class="bg-white shadow-md rounded-lg p-6 border border-gray-200">
+                    <span class='bg-green-400 p-4 text-center rounded-full'>{{forloop.counter}}</span>
+                    <div class="flex justify-between items-start my-5">
+                        <div>
+                            <h2 class="text-xl font-semibold text-blue-700">{{ event.name }}</h2>
+                            <p class="text-sm text-gray-600">{{ event.date }} at {{ event.time }}</p>
+                            <p class="mt-1 text-gray-700"> {{ event.location }}</p>
+                            <p class="text-sm mt-1">Category: <span class="text-gray-800 font-medium">{{ event.category.name }}</span></p>
+                        </div>
+
+                        <form method="post" action="{% url 'cancel-rsvp' event.id %}" onsubmit="return confirm('Are you sure you want to cancel your RSVP?');">
+                            {% csrf_token %}
+                            <button class="bg-red-300 text-white px-4 py-2 rounded hover:bg-red-600">Cancel RSVP</button>
+                        </form>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-center text-gray-600 mt-10">You have not RSVP'd to any events yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

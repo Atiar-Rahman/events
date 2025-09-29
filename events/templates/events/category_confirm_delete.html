@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Delete Category - {{ category.name }}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static "css/output.css" %}">
+</head>
+<body class="bg-gray-50">
+    {% include "events/navbar.html" %}
+    <div class="container mx-auto px-6">
+        <div class="bg-red-50 p-6 rounded-lg shadow-md text-center">
+            <h1 class="text-2xl font-bold text-red-600 mb-4">Confirm Delete</h1>
+
+            <p class="mb-6">
+                Are you sure you want to delete the category:
+                <span class="font-semibold text-gray-800">"{{ category.name }}"</span>?
+            </p>
+
+            <p class="text-red-500 mb-6">This action cannot be undone. All events under this category will be affected.</p>
+
+            <form method="POST" class="flex flex-col md:flex-row justify-center gap-4">
+                {% csrf_token %}
+                <button type="submit" class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700">
+                    Yes, Delete
+                </button>
+                <a href="{% url 'category_list' %}" class="bg-gray-600 text-white px-6 py-2 rounded hover:bg-gray-700">
+                    Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+
+    {% include "events/footer.html" %}
+
+</body>
+</html>

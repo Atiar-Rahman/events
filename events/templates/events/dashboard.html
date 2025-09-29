@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Event Manager</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+<body class="bg-gray-50">
+
+{% include "events/navbar.html" %}
+
+<section class="py-8">
+    <div class="container mx-auto px-6">
+        <h1 class="text-3xl font-bold mb-6">Dashboard</h1>
+
+
+        <div class="flex justify-between mb-8">
+            <a href="?type=events" class="bg-white p-4 rounded shadow hover:bg-blue-50 block">
+                <h3 class="text-gray-500">Total Events</h3>
+                <p class="text-2xl font-bold">{{ counts.events.total }}</p>
+            </a>
+
+            <a href="?type=categories" class="bg-white p-4 rounded shadow hover:bg-blue-50 block">
+                <h3 class="text-gray-500">Categories</h3>
+                <p class="text-2xl font-bold">{{ counts.categories.total }}</p>
+            </a>
+
+            <a href="?type=upcoming" class="bg-white p-4 rounded shadow hover:bg-blue-50 block">
+                <h3 class="text-gray-500">Upcoming Events</h3>
+                <p class="text-2xl font-bold">{{ counts.events.upcoming }}</p>
+            </a>
+
+            <a href="?type=past" class="bg-white p-4 rounded shadow hover:bg-blue-50 block">
+                <h3 class="text-gray-500">Past Events</h3>
+                <p class="text-2xl font-bold">{{ counts.events.past }}</p>
+            </a>
+        </div>
+
+
+        <div class="data-section">
+            {% if data_type in "events upcoming_events past_events" %}
+                <div class="flex justify-between mb-4">
+                    <h2 class="text-xl font-semibold">Events</h2>
+                    <a href="{% url 'event_create' %}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                        + Add Event
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {% for event in data %}
+                    <div class="bg-white p-4 rounded shadow">
+                        <h3 class="text-lg font-bold">{{ event.name }}</h3>
+                        <p class="text-sm text-gray-600">{{ event.date }} at {{ event.location }}</p>
+                        <div class="mt-2 flex">
+                            <a href="{% url 'event_detail' event.id %}" class="text-blue-600 hover:underline mr-4 bg-green-200 py-2 px-4 my-5 rounded-lg">View</a>
+                            <a href="{% url 'event_update' event.id %}" class="text-yellow-600 hover:underline mr-4 bg-blue-500 py-2 px-4 my-5 rounded-lg">Edit</a>
+                            <a href="{% url 'event_delete' event.id %}" class="text-red-600 hover:underline mr-4 bg-red-200 py-2 px-4 my-5 rounded-lg">Delete</a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>No events found.</p>
+                    {% endfor %}
+                </div>
+
+            {% elif data_type == "categories" %}
+                <div class="flex justify-between mb-4">
+                    <h2 class="text-xl font-semibold">Categories</h2>
+                    <a href="{% url 'category_create' %}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                        + Add Category
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {% for c in data %}
+                    <div class="bg-white p-4 rounded shadow">
+                        <h3 class="text-lg font-bold">{{ c.name }}</h3>
+                        <p class="text-sm text-gray-600">{{ c.description }}</p>
+                        <div class="mt-2 flex gap-5">
+                            <a href="{% url 'category_update' c.id %}" class="text-yellow-600 hover:underline mr-4 bg-blue-500 py-2 px-4 my-5 rounded-lg">Edit</a>
+                            <a href="{% url 'category_delete' c.id %}" class="text-red-600 hover:underline mr-4 bg-red-200 py-2 px-4 my-5 rounded-lg">Delete</a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>No categories found.</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

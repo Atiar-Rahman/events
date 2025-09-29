@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}events-management{% endblock title %}
+
+{% block content %}
+<div class='bg-green-100 lg:w-[1500px] lg:h-[30vh] mx-auto'>
+    {% comment %}hero section {% endcomment %}
+     <div class='hero-bg lg:w-[1500px] lg:h-[70vh] bg-cover mx-auto opacity-70 my-5'>
+        <div class='text-white flex justify-center flex-col items-center py-5 md:py-32 '>
+            <h1 class='text-3xl tracking-wider'>WelCome Our Event Program</h1>
+            <p class='text-5xl m-4'>Now, Get Started Our Events</p>
+            <div class='space-x-10'>
+                <a href="{% url "event_list" %}"><button class='bg-red-200 p-4 text-black font-medium rounded-lg'>Get Started</button></a>
+                <button>Learn More-------</button>
+            </div>
+
+        </div>
+     </div>
+    <section>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for event in events %}
+            <div class="border p-4 rounded shadow">
+                <h2 class="text-xl font-semibold">{{ event.name }}</h2>
+                <p class="text-gray-600">{{ event.category.name }}</p>
+                <p>{{ event.date }} at {{ event.time }}</p>
+                <p>Location: {{ event.location }}</p>
+                <p>Participants: {{ event.participants.count }}</p>
+                <a href="{% url 'event_detail' event.id %}" class="text-blue-500">View</a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <div class='flex justify-center my-10'>
+        <a href="{% url "event_list" %}" class='bg-red-200 p-4 rounded-lg '>Show ALL</a>
+    </div>
+    
+</div>
+{% endblock content %}
+{% include "events/footer.html" %}

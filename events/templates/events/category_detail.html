@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Category - {{ category.name }}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static "css/output.css" %}">
+</head>
+<body class="bg-gray-50">
+
+{% include "events/navbar.html" %}
+<div class="container mx-auto px-6">
+    <div class="bg-white p-6 rounded-lg shadow-md">
+
+        <h1 class="text-3xl font-bold mb-2">{{ category.name }}</h1>
+        <p class="text-gray-600 mb-4">{{ category.description }}</p>
+
+        <h2 class="text-xl font-semibold mb-2">Events in this Category:</h2>
+        {% if events %}
+            <ul class="space-y-2 mb-6">
+                {% for event in events %}
+                    <li class="bg-gray-100 p-3 rounded">
+                        <span class="font-semibold">{{ event.name }}</span> -
+                        {{ event.date }} at {{ event.location }}
+                        <a href="{% url 'event_detail' event.id %}" class="text-blue-600 hover:underline ml-2">
+                            View Event
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-gray-500 mb-6">No events in this category.</p>
+        {% endif %}
+
+        <div class="flex gap-4">
+            <a href="{% url 'category_update' category.id %}"
+               class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                Edit Category
+            </a>
+            <a href="{% url 'category_delete' category.id %}"
+               class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+                Delete Category
+            </a>
+            <a href="{% url 'category_list' %}"
+               class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">
+                Back to Categories
+            </a>
+        </div>
+
+    </div>
+</div>
+
+{% include "events/footer.html" %}
+
+</body>
+</html>

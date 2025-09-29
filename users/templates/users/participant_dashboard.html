@@ -1,0 +1,10 @@
+<h2 class="text-xl font-bold mb-4">My RSVP’d Events</h2>
+<ul class="space-y-2">
+    {% for event in events %}
+        <li class="border-b pb-2">
+            <strong>{{ event.name }}</strong> — {{ event.date }} at {{ event.time }}
+        </li>
+    {% empty %}
+        <li>No RSVP’d events yet.</li>
+    {% endfor %}
+</ul>

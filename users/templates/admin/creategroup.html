@@ -1,0 +1,27 @@
+{% extends "admin/dashboard.html" %}
+
+{% block content %}
+<div class="max-w-lg mx-auto mt-10 bg-white shadow-md rounded-lg p-6">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Assign Role</h2>
+    <ul>
+        {% for message in messages %}
+            <li class='text-green-300 text-center'>{{message}}</li>
+        {% endfor %}
+    </ul>
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+        {% for field in form %}
+            <div>
+                <label class="block text-gray-700 font-medium mb-1">{{ field.label_tag }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ field.errors|striptags }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition">
+            Assign Role
+        </button>
+    </form>
+</div>
+{% endblock content %}

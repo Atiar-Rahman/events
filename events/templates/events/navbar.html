@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}navbar{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+<body>
+    <nav class="bg-white shadow">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-3 py-3 items-center">
+        <a href="{% url 'home' %}" class="text-xl font-bold text-blue-600">EventOrganizer</a>
+        <div class="space-x-5">
+            <a href="{% url 'home' %}" class="hover:text-blue-600">Home</a>
+            <a href="{% url "event_list" %}" class="hover:text-blue-600">Events</a>
+            <a href="{% url "category_list" %}" class="hover:text-blue-600">Categories</a>
+            <a href="{% url "dashboard" %}" class="hover:text-blue-600">Organizer-Dashboard</a>
+            <a href="{% url "participant-dashboard" %}" class="hover:text-blue-600">Participant-Dashboard</a>
+        </div>
+        <div>
+            {% if user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-100 hover:text-black">Logout</button>
+                    <a href="{% url 'profile' %}" class="text-blue-600 hover:underline border-2 py-2 px-3 rounded-md border-green-300">View Profile</a>
+                </form>
+            {% else %}
+                <a href="{% url 'sign-in' %}" class="py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-600">Login</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+</body>
+</html>

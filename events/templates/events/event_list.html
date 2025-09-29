@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Events{% endblock title %}
+{% block content %}
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold mb-4">Events</h1>
+        
+        <div class='flex justify-center my-3'>
+            <form method="get" class="mb-4">
+                <input type="text" name="search" placeholder="Search by name or location"
+                    class="border rounded px-4 py-2" value="{{ request.GET.search }}">
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
+            </form>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for event in events %}
+            <div class="border p-4 rounded shadow">
+                <h2 class="text-xl font-semibold">{{ event.name }}</h2>
+                <p class="text-gray-600">{{ event.category.name }}</p>
+                <p>{{ event.date }} at {{ event.time }}</p>
+                <p>Location: {{ event.location }}</p>
+                <p>Participants: {{ event.participants.count }}</p>
+                <a href="{% url 'event_detail' event.id %}" class="text-blue-500">View</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

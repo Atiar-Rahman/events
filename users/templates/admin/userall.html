@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Roles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="max-w-6xl mx-auto py-10 px-4">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">User Role Management</h1>
+
+        <div class="overflow-x-auto bg-white rounded-lg shadow ring-1 ring-black ring-opacity-5">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 uppercase">#</th>
+                        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 uppercase">Username</th>
+                        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 uppercase">Email</th>
+                        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 uppercase">User ID</th>
+                        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 uppercase">Role</th>
+                        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 uppercase">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    {% for user in users %}
+                    <tr class="hover:bg-gray-100 transition-colors duration-200">
+                        <td class="px-6 py-4 whitespace-nowrap text-gray-700">{{forloop.counter}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">{{user.first_name}} {{user.last_name}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-gray-700">{{user.email}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-gray-700">{{user.id}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-green-600 font-semibold">{{user.groups.first.name|default:"NO group assign"}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <a
+                                href="{% url 'assign-role' user.id %}"
+                                class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2 px-4 rounded transition"
+                            >
+                                Change Role
+                            </a>
+                        </td>
+                    </tr>{% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
